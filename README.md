@@ -18,5 +18,7 @@
 
 Для подключения к БД необходимо отредактировать файл "App.config" заменив connectionString на своё подключение к БД
 
+Скрипты создания и заполнения таблиц в файле "ConsoleApplication_CRUD_PG/SQL_Scripts/scripts.txt"
+
 Схема БД:
 ![image](https://user-images.githubusercontent.com/71774623/223428103-0e161cb7-a95e-49a7-b45f-1397b3f372ac.png)
