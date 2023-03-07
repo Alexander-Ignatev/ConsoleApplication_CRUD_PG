@@ -8,12 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+    <Compile Remove="BackUpDb\**" />
+    <EmbeddedResource Remove="BackUpDb\**" />
+    <None Remove="BackUpDb\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BackUpDb\" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
   </ItemGroup>
 
 </Project>

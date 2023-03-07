@@ -1,0 +1,119 @@
+
+-- CREATE DB
+
+CREATE DATABASE "TestDB"
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Russian_Russia.1251'
+    LC_CTYPE = 'Russian_Russia.1251'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+--create tables
+
+CREATE TABLE users
+(
+    Id SERIAL PRIMARY KEY,
+    FirstName CHARACTER VARYING(30),
+    LastName CHARACTER VARYING(30),
+    MiddleName CHARACTER VARYING(30),
+    Email CHARACTER VARYING(30),
+	Phone Text
+);
+
+CREATE TABLE categories
+(
+    Id SERIAL PRIMARY KEY,
+	ParentId INTEGER,
+	ShortName Text Unique NOT NULL
+);
+
+CREATE TABLE products
+(
+    Id SERIAL PRIMARY KEY,
+	UserId Integer References users (Id),
+    ShortName Text,
+    Description Text,
+    Price Money,
+	CategoriesId Integer References categories (Id)
+);
+
+-- Insert categories
+
+INSERT INTO public.categories(
+	parentid, shortname)
+	VALUES (0, 'Транспорт');
+	
+	INSERT INTO public.categories(
+	parentid, shortname)
+	VALUES (1, 'Автомобили');
+	
+	INSERT INTO public.categories(
+	parentid, shortname)
+	VALUES (1, 'Мотоциклы');
+	
+	INSERT INTO public.categories(
+	parentid, shortname)
+	VALUES (1, 'Грузовики');
+	
+	INSERT INTO public.categories(
+	parentid, shortname)
+	VALUES (1, 'Запчасти');
+	
+	INSERT INTO public.categories(
+	parentid, shortname)
+	VALUES (3, 'Вездеходы');
+	
+	INSERT INTO public.categories(
+	parentid, shortname)
+	VALUES (3, 'Картинг');
+	
+	INSERT INTO public.categories(
+	parentid, shortname)
+	VALUES (3, 'Снегоходы');
+	
+	-- Insert users
+	
+	INSERT INTO public.users(
+	lastname, firstname, middlename, email, phone)
+	VALUES ('Петров', 'Петр', 'Петрович', 'petr@petr.petr', '89876543212');
+	
+	INSERT INTO public.users(
+	lastname, firstname, middlename, email, phone)
+	VALUES ('Иванов', 'Петр', 'Петрович', 'ivan@petr.petr', '89876543112');
+	
+	INSERT INTO public.users(
+	lastname, firstname, middlename, email, phone)
+	VALUES ('Иванов', 'Иван', 'Петрович', 'ivan@ivan.petr', '89875443112');
+	
+	INSERT INTO public.users(
+	lastname, firstname, middlename, email, phone)
+	VALUES ('Иванов', 'Иван', 'Иванович', 'ivan@ivan.ivan', '89765443112');
+	
+	INSERT INTO public.users(
+	lastname, firstname, middlename, email, phone)
+	VALUES ('Петров', 'Иван', 'Иванович', 'petr@ivan.ivan', '89975443112');
+	
+	-- Insert products
+	
+	INSERT INTO public.products(
+	userid, shortname, description, price, categoriesid)
+	VALUES (1, 'KIA', 'Тестовое описание 1', 700000, 2);
+	
+	INSERT INTO public.products(
+	userid, shortname, description, price, categoriesid)
+	VALUES (1, 'Ямаха', 'Тестовое описание 2', 400000, 3);
+	
+	INSERT INTO public.products(
+	userid, shortname, description, price, categoriesid)
+	VALUES (1, 'Ямаха', 'Тестовое описание 3', 200000, 8);
+	
+	INSERT INTO public.products(
+	userid, shortname, description, price, categoriesid)
+	VALUES (1, 'ВАЗ', 'Тестовое описание 4', 1000000, 1);
+	
+	INSERT INTO public.products(
+	userid, shortname, description, price, categoriesid)
+	VALUES (1, 'УАЗ', 'Тестовое описание 5', 2000000, 6);
